@@ -1,5 +1,4 @@
-
-class Triangle{
+  class Triangle{
 
     constructor(){
         this.type = 'triangle';
@@ -18,7 +17,7 @@ class Triangle{
         gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], opacity);
         gl.uniform1f(u_Size, size);
 
-        // Draw
+        // draw here 
         var d = this.size/200;
         drawTriangle([xy[0]-d/2, xy[1]-d/2, xy[0]+d/2, xy[1]-d/2, xy[0], xy[1]+d/2]);
     }
@@ -54,5 +53,31 @@ function drawTriangle3D(vertices){
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.DYNAMIC_DRAW);
     gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(a_Position);
+    gl.drawArrays(gl.TRIANGLES, 0, n);
+}
+
+// draw triangle 
+function drawTriangle3DUV(vertices, uv){
+
+    var n = vertices.length/3;
+
+    var vertexBuffer = gl.createBuffer();
+    if(!vertexBuffer){
+        return;
+    }
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.DYNAMIC_DRAW);
+    gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(a_Position);
+
+    var uvBuffer = gl.createBuffer();
+    if(!uvBuffer){
+        return;
+    }
+    gl.bindBuffer(gl.ARRAY_BUFFER, uvBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(uv), gl.DYNAMIC_DRAW);
+    gl.vertexAttribPointer(a_UV, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(a_UV);
+
     gl.drawArrays(gl.TRIANGLES, 0, n);
 }

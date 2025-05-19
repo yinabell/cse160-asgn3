@@ -9,6 +9,8 @@ class Cube{
         this.opacity = 100;
 
         this.matrix = new Matrix4(); 
+
+        this.textureNum = -2;
     }
 
     render() {
@@ -66,4 +68,29 @@ class Cube{
         */ 
 
     }
+
+    // better render function 
+    renderfast(){
+
+    const rgba = this.color;
+    const opacity = this.opacity / 100;
+
+    gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], opacity);
+    gl.uniform1i(u_whichTexture, this.textureNum);
+    gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements); 
+
+    // UV buffer
+    gl.bindBuffer(gl.ARRAY_BUFFER, cubeUVBuffer);
+    gl.vertexAttribPointer(a_UV, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(a_UV);
+
+    // vertex buffer
+    gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexBuffer);
+    gl.vertexAttribPointer(a_Position, 3, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(a_Position); 
+
+    // draw 
+    gl.drawArrays(gl.TRIANGLES, 0, 36);
+    }
 }
+
