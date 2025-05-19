@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Change a point color</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <button type = "button" id = "erase"> clear canvas </button>
+    <p>
+ 
+    Camera Angle <input type="range" min="0" max="360" value="5" class="slider" id="angleSlide">
+  
+    <button type="button" id="eyeTrackingToggle">Eye Tracking: ON</button>
+
+
+    <p>
+    Tail <input type="range" min="-30" max="30" value="0" class="slider" id="tailSlide"> 
+    <p>
+    Animation: 
+    <button type="button" id="animationTailOnButton">ON</button>
+    <button type="button" id="animationTailOffButton">OFF</button>
+    <p>
+
+
+    </p> 
+
+    <img src="goosecat.png" width="300" height="300" alt="Draw a Picture"> 
+    This is my cat pixie
+ 
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="../lib/cuon-matrix-cse160.js"></script>
+    <script src="asgn1.js"></script>
+    <script src="point.js"></script>
+    <script src="circle.js"></script>
+    <script src="triangle.js"></script>
+    <script src="cube.js"></script>
+  </body>
+</html>
